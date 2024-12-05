@@ -7,10 +7,12 @@
     testStarted.set(true);
   };
 
-  const stopTest = ()=> {
-    isTestStarted.set(false);
-  }
-
+   // Function to stop the test
+  const stopTest = () => {
+    testStarted.set(false); // Make sure test state is updated to false
+    aiMessage = "Hello! I am your AI assistant. How can I help you today?";
+  };
+  
 </script>
 
 <style>

@@ -20,6 +20,7 @@
   // Function to stop the test
   const stopTest = () => {
     testStarted.set(false); // Make sure test state is updated to false
+    aiMessage = "Hello! I am your AI assistant. How can I help you today?";
   };
 
   // Watch for the test state
@@ -75,7 +76,6 @@
     <div class="ai-message">
       <p>{aiMessage}</p>
     </div>
-    <button on:click={stopTest}>Stop Test</button>
     <button on:click={startRecognition}>Speak Now</button> <!-- Added Speak Now button -->
   </div>
 {/if}
