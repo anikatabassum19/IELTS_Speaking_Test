@@ -85,7 +85,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
   }
 
   .ai-message {
@@ -100,8 +99,8 @@
 
   .ai-model button {
     padding: 10px 20px;
-    margin-top: 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom:20px;
   }
 </style>
