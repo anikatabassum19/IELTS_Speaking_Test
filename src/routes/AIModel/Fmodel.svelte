@@ -76,6 +76,9 @@
     <div class="ai-message">
       <p>{aiMessage}</p>
     </div>
+    <div class="user-response">
+      <p><strong>Your Response:</strong> {userResponse}</p> <!-- Display user response -->
+    </div>
     <button on:click={startRecognition}>Speak Now</button> <!-- Added Speak Now button -->
   </div>
 {/if}
@@ -95,12 +98,13 @@
 
   .user-response {
     margin-bottom: 20px;
+    font-size: 16px;
   }
 
   .ai-model button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    margin-bottom:20px;
+    margin-bottom: 20px;
   }
 </style>
