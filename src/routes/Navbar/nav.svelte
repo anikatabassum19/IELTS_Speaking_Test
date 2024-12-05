@@ -1,6 +1,5 @@
 <script>
-  import about from "../About/about.svelte"
-  import contact from "../Contact/contact.svelte"
+// No need to import anything for navigation
 </script>
 
 <style>
@@ -53,12 +52,9 @@
   <div class="logo">
     TalkSmart
   </div>
-  <ul>
+   <ul>
     <li><a href="/">Home</a></li>
-    <li><a>Take the Test</a></li>
-    <li><a>Results</a></li>
-    <li><a>Profile</a></li>
-    <li><a>About</a></li>
-    <li><a>Contact</a></li>
+    <li><a href="/results">Results</a></li>
+    <li><a href="/profile">Login/SignUp</a></li>
   </ul>
 </nav>

@@ -23,7 +23,13 @@
 
 <style>
   .contact-container {
-    margin: 20px;
+    display: flex;              /* Enable Flexbox */
+    flex-direction: column;     /* Stack children vertically */
+    justify-content: center;    /* Center children vertically */
+    align-items: center;        /* Center children horizontally */
+    text-align: center;         /* Center text */
+    height: 60vh;               /* Set the height to 60% of the viewport height */
+    margin: 0;
     padding: 20px;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -32,13 +38,13 @@
   }
 
   h1 {
-    font-size: 2em;
+    font-size: 1.8em;           /* Slightly smaller font */
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   p {
-    font-size: 1.2em;
+    font-size: 1.1em;           /* Slightly smaller font */
     color: #555;
     margin-bottom: 20px;
   }
@@ -46,12 +52,17 @@
   .contact-form {
     display: flex;
     flex-direction: column;
+    align-items: center;        /* Center the form elements */
+    width: 100%;
+    max-width: 600px;           /* Optional: Limit the form width */
   }
 
   .contact-form label {
     font-size: 1em;
     margin-bottom: 5px;
     color: #333;
+    text-align: left;           /* Left align the labels */
+    width: 100%;
   }
 
   .contact-form input,
