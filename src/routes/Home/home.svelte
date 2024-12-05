@@ -1,5 +1,16 @@
 <script>
- // (state, methods, etc.)
+
+ import { showAIModel } from '../../stores/showAIModel.js'; // Import the store
+ import { testStarted } from '../../stores/testState.js';
+  const startTest = () => {
+    showAIModel.set(true); // Set the store value to true
+    testStarted.set(true);
+  };
+
+  const stopTest = ()=> {
+    isTestStarted.set(false);
+  }
+
 </script>
 
 <style>
@@ -36,5 +47,9 @@
 <section class="home-section">
   <h1>Welcome to TalkSmart!</h1>
   <p>Your free IELTS Speaking Test App</p>
-  <button on:click={() => alert('Start the Test!')}>Start Test</button>
+  {#if $testStarted}
+  <button on:click={stopTest}>Stop Test </button>
+  {:else}
+  <button on:click={startTest}>Start Test </button>
+  {/if}
 </section>
