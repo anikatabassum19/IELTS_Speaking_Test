@@ -1,5 +1,6 @@
 <script>
-  // (active class, user login, etc.)
+  import about from "../About/about.svelte"
+  import contact from "../Contact/contact.svelte"
 </script>
 
 <style>
@@ -54,10 +55,10 @@
   </div>
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/test">Take the Test</a></li>
-    <li><a href="/results">Results</a></li>
-    <li><a href="/profile">Profile</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a>Take the Test</a></li>
+    <li><a>Results</a></li>
+    <li><a>Profile</a></li>
+    <li><a>About</a></li>
+    <li><a>Contact</a></li>
   </ul>
 </nav>
