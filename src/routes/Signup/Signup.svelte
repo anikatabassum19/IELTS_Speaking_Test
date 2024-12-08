@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+
   import { goto } from '$app/navigation';
 
   let name = '';
@@ -8,18 +8,7 @@
   let password = '';
   let error = '';
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    error = '';
 
-    // Simulate a signup logic
-    if (email === 'user@example.com' && password === 'password') {
-      console.log('Signup successful');
-      goto('/dashboard'); // Redirect to dashboard
-    } else {
-      error = 'Invalid email or password';
-    }
-  };
 </script>
 
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
@@ -28,7 +17,7 @@
       <h1 class="text-xl font-semibold text-gray-800">Signup</h1>
       <p class="text-sm text-gray-600">Create an account to get started</p>
     </div>
-    <form on:submit={handleSubmit} class="space-y-4">
+    <form class="space-y-4">
       <!-- Name Field -->
       <div class="space-y-2">
         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
