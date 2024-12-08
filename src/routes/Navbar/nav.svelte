@@ -55,6 +55,6 @@
    <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/results">Results</a></li>
-    <li><a href="/profile">Login/SignUp</a></li>
+    <li><a href="/Login">Login/SignUp</a></li>
   </ul>
 </nav>
