@@ -7,11 +7,14 @@
   let userResponse = "";
   let aiMessage = "Hello! I am your AI assistant. How can I help you today?";
 
+  // @ts-ignore
   let synth;
+  // @ts-ignore
   let recognition;
 
   // Function to start speech recognition
   const startRecognition = () => {
+    // @ts-ignore
     if (recognition) {
       recognition.start();
     }
