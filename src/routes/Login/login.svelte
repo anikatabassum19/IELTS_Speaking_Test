@@ -23,7 +23,7 @@
 
       if (response.ok) {
         // Navigate to the dashboard or home page after login
-        goto('/dashboard');
+        goto('/Dashboard');
       } else {
         error = result.error || 'Invalid email or password';
       }
