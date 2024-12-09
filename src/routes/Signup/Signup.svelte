@@ -8,6 +8,7 @@
   let confirmPassword = '';
   let error = '';
 
+
   // @ts-ignore
   async function handleSignup(event) {
     event.preventDefault();
@@ -18,7 +19,7 @@
     }
 
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

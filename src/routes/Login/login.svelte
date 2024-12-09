@@ -5,12 +5,13 @@
   let password = '';
   let error = '';
 
+
   // @ts-ignore
   async function handleLogin(event) {
     event.preventDefault();
 
     try {
-      const response = await fetch('/Login', {
+      const response = await fetch('api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
