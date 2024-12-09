@@ -8,15 +8,48 @@
   import TestOverview from '../testOverview/testOverview.svelte';
 
   let activeTab = 'overview';
+  /**
+   * @type {{ name: any; } | null}
+   */
+  let users = null;
+  let loading = true; 
+
+  async function fetchUser() {
+    try {
+      const res = await fetch('api/users', { credentials: 'include' });
+      if (res.ok) {
+        users = await res.json();
+      } else {
+        console.error('Failed to fetch user data:', await res.text());
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    } finally {
+      loading = false;
+    }
+  }
 
   // @ts-ignore
   function setActiveTab(tab) {
     activeTab = tab;
   }
+
+  // Fetch user data on component mount
+  fetchUser();
 </script>
 
 <main class="container mx-auto p-4">
   <h1 class="text-3xl font-bold mb-6">IELTS Speaking Test Dashboard</h1>
+
+    {#if loading}
+    <p>Loading user information...</p>
+  {:else if users}
+    <h1 class="text-3xl font-bold mb-6">
+      Welcome, {users.name}! 🎉
+    </h1>
+  {:else}
+    <p class="text-red-500">Failed to load user information. Please try again.</p>
+  {/if}
 
   <nav class="mb-6">
     <ul class="flex space-x-4">
