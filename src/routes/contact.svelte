@@ -1,5 +1,38 @@
 <script>
   export let title = "Contact Us";
+
+  let name = '';
+  let email = '';
+  let Messages = '';
+  let error = '';
+
+
+
+  // @ts-ignore
+  async function handleContactus(event) {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('api/contactUs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, messages: Messages}),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Thank you for contacting with us')
+      } else {
+        error = result.error || 'Something went wrong!';
+      }
+    } catch (err) {
+      error = 'Connection Problem';
+    }
+  }
+
 </script>
 
 <div class="contact-container">
@@ -7,15 +40,17 @@
   <p>
     We'd love to hear from you! Feel free to reach out to us with any questions, feedback, or suggestions.
   </p>
-  <form class="contact-form">
+  <form class="contact-form" on:submit|preventDefault={handleContactus}>
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="Your name" required />
+    <input type="text" id="name" name="name" bind:value={name} placeholder="Your name" required />
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="Your email" required />
+    <input type="email" id="email" name="email" bind:value={email} placeholder="Your email" required />
 
     <label for="message">Message:</label>
-    <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+    <textarea id="message" name="Messages" bind:value={Messages} placeholder="Your message" rows="5" required></textarea>
+
+    <p class="error-message" style="color: red;">{error}</p>
 
     <button type="submit">Submit</button>
   </form>
