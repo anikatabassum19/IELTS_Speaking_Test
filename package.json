@@ -29,6 +29,7 @@
 		"cookie": "^1.0.2",
 		"jsonwebtoken": "^9.0.2",
 		"mongodb": "^6.11.0",
+		"sentiment": "^5.0.2",
 		"svelte-routing": "^2.13.0"
 	}
 }
