@@ -2,9 +2,16 @@
   import { onMount } from 'svelte';
 
   /**
-   * @type {{ profilePicture: any; name: any; email: any; mobile: any; previousScores: any; } | null}
+   * @type {{
+   *   profilePicture: string | null;
+   *   name: string;
+   *   email: string;
+   *   mobile: string;
+   *   previousScores: { date: string; score: number }[] | null;
+   * } | null}
    */
   let user = null;
+
   /**
    * @type {string | null}
    */
@@ -21,24 +28,21 @@
 
       if (!data.success) {
         error = data.error;
-        console.log("Fetching user details...");
-
         return;
       }
 
-      // @ts-ignore
+      // Map response to `user` object
       user = {
         name: data.user.name,
         email: data.user.email,
-        mobile: data.user.mobile || "Not Provided"
+        mobile: data.user.mobile || 'Not Provided',
+        profilePicture: data.user.profilePicture || '/default-profile.png',
+        previousScores: data.user.previousScores || [], // Default to empty array if not provided
       };
     } catch (err) {
       error = 'Failed to fetch user data.';
     }
   });
-
-
-
 </script>
 
 {#if error}
@@ -50,9 +54,9 @@
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
       <div class="p-6 sm:p-8">
         <div class="flex flex-col sm:flex-row items-center">
-          <img 
-            src=""
-            alt="Profile Picture" 
+          <img
+            src={user.profilePicture}
+            alt="Profile Picture"
             class="w-32 h-32 rounded-full object-cover mb-4 sm:mb-0 sm:mr-6"
           />
           <div>
@@ -63,10 +67,10 @@
         </div>
       </div>
 
-      <!-- <div class="border-t border-gray-200 p-6 sm:p-8">
+      <div class="border-t border-gray-200 p-6 sm:p-8">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Previous Scores</h2>
-        {#if user.previousScores.length === 0}
-          <p class="text-gray-600">No scores available</p>
+        {#if !user.previousScores || user.previousScores.length === 0}
+          <p class="text-gray-600 text-center">YOU DID NOT TAKE ANY TEST</p>
         {:else}
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -87,7 +91,7 @@
             </table>
           </div>
         {/if}
-      </div> -->
+      </div>
     </div>
   </div>
 {/if}

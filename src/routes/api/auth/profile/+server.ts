@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import { connectToDB } from '../../../../lib/db';
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
-import { env } from '$env/dynamic/private'; // Import environment variables
+import { env } from '$env/dynamic/private';
 
 const SECRET_KEY = env.SECRET_KEY || 'default-secret-key';
 
@@ -19,12 +19,16 @@ export async function GET({ request }: { request: Request }) {
 
     const db = await connectToDB();
     const usersCollection = db.collection('Authentication');
+    const scoresCollection = db.collection('Results');
 
+    // Fetch user details
     const user = await usersCollection.findOne({ _id: new ObjectId(decoded.id) });
-
     if (!user) {
       return json({ success: false, error: 'User not found' }, { status: 404 });
     }
+
+    // Fetch user's scores
+    const scores = await scoresCollection.find({ userId: decoded.id }).toArray();
 
     return json({
       success: true,
@@ -32,10 +36,15 @@ export async function GET({ request }: { request: Request }) {
         name: user.name,
         email: user.email,
         mobile: user.mobile,
+        profilePicture: user.profilePicture || '/default-profile.png',
+        previousScores: scores.map(score => ({
+          date: score.date,
+          score: score.score,
+        })),
       },
     });
   } catch (error) {
     console.error('Error in /auth/profile:', error);
-    return json({ success: false, error: 'Invalid or expired token' }, { status: 401 });
+    return json({ success: false, error: 'An error occurred' }, { status: 500 });
   }
 }
