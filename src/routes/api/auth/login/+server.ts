@@ -3,10 +3,9 @@ import { connectToDB } from '../../../../lib/db';
 import crypto from 'crypto';
 import { serialize } from 'cookie';
 import jwt from 'jsonwebtoken';
+import { env } from '$env/dynamic/private'; // Import environment variables
 
-
-const SECRET_KEY = crypto.randomBytes(64).toString('hex');
-
+const SECRET_KEY = env.SECRET_KEY || 'default-secret-key';
 
 function hashPassword(password: string, salt: string): string {
   const hash = crypto.createHmac('sha256', salt).update(password).digest('hex');
@@ -62,6 +61,7 @@ export async function POST({ request }: { request: Request }) {
       }
     );
   } catch (error) {
+    console.error('Error in /auth/login:', error);
     return json({ success: false, error: 'An error occurred during login' }, { status: 500 });
   }
 }
